@@ -21,6 +21,22 @@
 
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.6.0/stitch.js"></script>
     <script src="jsAppFiles/helpMe.js"></script>
+    <script>
+        function replaceGoogleCDN() {
+            $('link').each(function(){
+              var $intial  = $(this).attr('href'),
+                  $replace = $intial.replace('//fonts.googleapis.com/', '//fonts.useso.com/');
+                  $(this).attr('href', $replace);
+            });
+          }
+  
+          $.getJSON('http://api.wipmania.com/jsonp?callback=?', function (data) { 
+              if ( data.address.country_code == 'CN' ) {
+                console.log(data.address.country_code);
+                replaceGoogleCDN();
+              }
+            });
+      </script>
 
     <style>
         .top {padding-top: 20%;}

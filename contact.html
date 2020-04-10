@@ -17,6 +17,23 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+      function replaceGoogleCDN() {
+          $('link').each(function(){
+            var $intial  = $(this).attr('href'),
+                $replace = $intial.replace('//fonts.googleapis.com/', '//fonts.useso.com/');
+                $(this).attr('href', $replace);
+          });
+        }
+
+        $.getJSON('http://api.wipmania.com/jsonp?callback=?', function (data) { 
+            if ( data.address.country_code == 'CN' ) {
+              console.log(data.address.country_code);
+              replaceGoogleCDN();
+            }
+          });
+    </script>
     <style>
       .pic {
         border-radius: 50%;
